@@ -1,24 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useState } from 'react';
+import ReactMarkdown from 'react-markdown';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+function App(){
+  const [text, setText] = useState("Difficulties increase the nearer we get to the goal.");
+  const handleChange = (event) => {
+    setText(event.target.value);
+  };
+  return(
+    <div>
+      <div className='editorWrap'>
+        <div className='toolbar'>
+          <i class="fa-regular fa-keyboard"></i>
+          <span>Editor</span>
+          <i class="fa fa-arrows-alt"></i>
+        </div>
+        <textarea id='editor' onChange={handleChange}></textarea>
+      </div>
+      <div className='previewWrap'>
+        <div className='toolbar'>
+          <i class="fa-regular fa-keyboard"></i>
+          <span>Previewer</span>
+          <i class="fa fa-arrows-alt"></i>
+        </div>
+        <div id='previewer'><ReactMarkdown id='reactmarkdown'>{text}</ReactMarkdown>
+        </div>
+      </div>
     </div>
+    
   );
 }
 
